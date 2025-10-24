@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Registrasi - Latihan 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Registrasi</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="firstName">Nama Depan:</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Masukkan nama depan" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Nama Belakang:</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Masukkan nama belakang" required>
+            </div>
+            
+            <button type="submit">Daftar</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Latihan 1
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            // Mencegah form submit default
+            event.preventDefault();
+            
+            let firstName = document.getElementById('firstName').value;
+            let lastName = document.getElementById('lastName').value;
+            let fullName = firstName + ' ' + lastName;
+            
+            // Menampilkan di konsol browser 
+            console.log('Nama Lengkap: ' + fullName + '.');
+            
+            // Menampilkan di halaman web 
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'Nama Lengkap: ' + fullName + '.';
+            resultDiv.style.display = 'block';
+            
+            // Reset form setelah submit
+            document.getElementById('registrationForm').reset();
+        });
+    </script>
+</body>
+</html>
