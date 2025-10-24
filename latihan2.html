@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Registrasi - Latihan 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #28a745;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .result strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Registrasi Nilai</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="firstName">Nama Depan:</label>
+                <input type="text" id="firstName" placeholder="Masukkan nama depan" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Nama Belakang:</label>
+                <input type="text" id="lastName" placeholder="Masukkan nama belakang" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nilaiAngka">Nilai Angka:</label>
+                <input type="number" id="nilaiAngka" placeholder="Masukkan nilai angka (0-100)" required>
+            </div>
+
+            <button type="submit">Daftar</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        // Event ketika tombol diklik
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Ambil nilai dari input
+            let firstName = document.getElementById('firstName').value;
+            let lastName = document.getElementById('lastName').value;
+            let nilaiAngka = parseFloat(document.getElementById('nilaiAngka').value);
+            let nilaiHuruf = konversiNilaiHuruf(nilaiAngka);
+
+            // Tampilkan di console
+            console.log('Nama Lengkap : ' + firstName + ' ' + lastName);
+            console.log('Nilai Angka  : ' + nilaiAngka);
+            console.log('Nilai Huruf  : ' + nilaiHuruf);
+
+            // Tampilkan di halaman web
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <strong>Nama Lengkap :</strong> ${firstName} ${lastName}<br>
+                <strong>Nilai Angka :</strong> ${nilaiAngka}<br>
+                <strong>Nilai Huruf :</strong> ${nilaiHuruf}
+            `;
+            resultDiv.style.display = 'block';
+
+            // Reset form
+            document.getElementById('registrationForm').reset();
+        });
+
+        // Fungsi konversi nilai huruf
+        function konversiNilaiHuruf(nilai) {
+            if (nilai >= 85) return 'A';
+            if (nilai >= 80) return 'A-';
+            if (nilai >= 75) return 'B+';
+            if (nilai >= 70) return 'B';
+            if (nilai >= 65) return 'B-';
+            if (nilai >= 60) return 'C+';
+            if (nilai >= 55) return 'C';
+            if (nilai >= 40) return 'D';
+            return 'E';
+        }
+    </script>
+</body>
+</html>
